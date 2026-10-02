@@ -14,13 +14,13 @@ static partial class Program
     /// <summary>Déplace la raquette avec les flèches, sans sortir de la fenêtre.</summary>
     static void DeplacerRaquette(float dt)
     {
-        if (Raylib.IsKeyDown(KeyboardKey.Left))
+        if (Raylib.IsKeyDown(KeyboardKey.Left) || Raylib.IsKeyDown(KeyboardKey.A))
         {
             positionRaquette.X -= VITESSE_RAQUETTE * dt;
             if (positionRaquette.X < 0)
                 positionRaquette.X = 0;
         }
-        else if (Raylib.IsKeyDown(KeyboardKey.Right))
+        else if (Raylib.IsKeyDown(KeyboardKey.Right) || Raylib.IsKeyDown(KeyboardKey.D))
         {
             positionRaquette.X += VITESSE_RAQUETTE * dt;
             if (positionRaquette.X > LARGEUR - LARGEUR_RAQUETTE)
