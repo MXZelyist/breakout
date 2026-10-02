@@ -45,11 +45,14 @@ static partial class Program
     /// <summary>Remet le jeu dans son état de départ.</summary>
     static void Reinitialiser()
     {
+        positionRaquette = new Vector2((LARGEUR - LARGEUR_RAQUETTE) / 2, HAUTEUR - MARGE_BAS_RAQUETTE);
+        RectangleRaquette();
     }
 
     /// <summary>Une image de jeu dans l'état Attente.</summary>
     static void MettreAJourAttente(float dt)
     {
+        DeplacerRaquette(dt);
     }
 
     /// <summary>Une image de jeu dans l'état Jeu.</summary>
