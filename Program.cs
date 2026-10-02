@@ -56,18 +56,13 @@ static partial class Program
         positionRaquette = new Vector2((LARGEUR - LARGEUR_RAQUETTE) / 2, HAUTEUR - MARGE_BAS_RAQUETTE);
         RectangleRaquette();
         DessinerBriques();
+        vies = VIES_DEPART;
+        score = 0;
     }
 
     /// <summary>Une image de jeu dans l'état Attente.</summary>
     static void MettreAJourAttente(float dt)
     {
-        for (int i = 0; i < LIGNES_BRIQUES; i++)
-        {
-            for (int j = 0; j < COLONNES_BRIQUES; j++)
-            {
-                briques[i, j] = true;
-            }
-        }
         DeplacerRaquette(dt);
         CollerBalleARaquette();
         if (Raylib.IsKeyPressed(KeyboardKey.Space))
@@ -86,10 +81,31 @@ static partial class Program
         RebondirSurMurs();
         RebondirSurRaquette();
         CasserBriques();
+        if(BalleSortieEnBas())
+        {
+            vies--;
+            if (vies <= 0)
+            {
+                etat = EtatJeu.Perdu;
+            }
+            else
+            {
+                etat = EtatJeu.Attente;
+            }
+        }
+        if(CompterBriques() == 0)
+        {
+            etat = EtatJeu.Gagne;
+        }
     }
 
     /// <summary>Une image de jeu dans les états Perdu et Gagne.</summary>
     static void MettreAJourFin()
     {
+        if (Raylib.IsKeyPressed(KeyboardKey.Space))
+        {
+            Reinitialiser();
+            etat = EtatJeu.Attente;
+        }
     }
 }

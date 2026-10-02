@@ -22,7 +22,9 @@ static partial class Program
                 if (Raylib.CheckCollisionCircleRec(positionBalle, RAYON_BALLE, rectanglesBriques[i,j]))
                 {
                     briques[i,j] = false;
+                    rectanglesBriques[i, j] = new Rectangle(0, 0, 0, 0);
                     vitesseBalle.Y = -vitesseBalle.Y;
+                    score += POINTS_PAR_BRIQUE;
                 }
             }
         }
@@ -31,7 +33,18 @@ static partial class Program
     /// <summary>Le nombre de briques encore présentes.</summary>
     static int CompterBriques()
     {
-        return 0;
+        int compteur = 0;
+        for (int i = 0; i < LIGNES_BRIQUES; i++)
+        {
+            for (int j = 0; j < COLONNES_BRIQUES; j++)
+            {
+                if (briques[i, j])
+                {
+                    compteur++;
+                }
+            }
+        }
+        return compteur;
     }
 
     /// <summary>Dessine les briques encore présentes, une couleur par ligne.</summary>
