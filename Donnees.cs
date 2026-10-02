@@ -34,7 +34,7 @@ static partial class Program
     const float ESPACE_BRIQUES = 6;        // espace entre deux briques, et entre une brique et le bord
     const float HAUTEUR_BRIQUE = 22;
     const float MARGE_HAUT_BRIQUES = 60;   // y du haut de la première ligne de briques
-    const float LARGEUR_BRIQUE = 0;        // À CALCULER (exercice 5)
+    const float LARGEUR_BRIQUE = LARGEUR / COLONNES_BRIQUES - ESPACE_BRIQUES * (COLONNES_BRIQUES + 1) / COLONNES_BRIQUES;
 
     // Règles
     const int POINTS_PAR_BRIQUE = 10;
@@ -46,6 +46,7 @@ static partial class Program
     static Vector2 positionBalle;          // centre de la balle
     static Vector2 vitesseBalle;           // pixels par seconde, sur x et sur y
     static bool[,] briques = new bool[LIGNES_BRIQUES, COLONNES_BRIQUES]; // true = la brique existe
+    static Rectangle[,] rectanglesBriques = new Rectangle[LIGNES_BRIQUES, COLONNES_BRIQUES]; // rectangles des briques
     static int score;
     static int vies;
 

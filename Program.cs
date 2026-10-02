@@ -32,6 +32,7 @@ static partial class Program
             Raylib.BeginDrawing();
             Raylib.ClearBackground(Color.Black);
             DessinerJeu();
+            DessinerBriques();
             if (etat == EtatJeu.Perdu || etat == EtatJeu.Gagne)
             {
                 DessinerFin();
@@ -45,16 +46,31 @@ static partial class Program
     /// <summary>Remet le jeu dans son état de départ.</summary>
     static void Reinitialiser()
     {
+        for (int i = 0; i < LIGNES_BRIQUES; i++)
+        {
+            for (int j = 0; j < COLONNES_BRIQUES; j++)
+            {
+                briques[i, j] = true;
+            }
+        }
         positionRaquette = new Vector2((LARGEUR - LARGEUR_RAQUETTE) / 2, HAUTEUR - MARGE_BAS_RAQUETTE);
         RectangleRaquette();
+        DessinerBriques();
     }
 
     /// <summary>Une image de jeu dans l'état Attente.</summary>
     static void MettreAJourAttente(float dt)
     {
+        for (int i = 0; i < LIGNES_BRIQUES; i++)
+        {
+            for (int j = 0; j < COLONNES_BRIQUES; j++)
+            {
+                briques[i, j] = true;
+            }
+        }
         DeplacerRaquette(dt);
         CollerBalleARaquette();
-        if(Raylib.IsKeyPressed(KeyboardKey.Space))
+        if (Raylib.IsKeyPressed(KeyboardKey.Space))
         {
             LancerBalle();
             etat = EtatJeu.Jeu;
@@ -69,6 +85,7 @@ static partial class Program
         DeplacerBalle(dt);
         RebondirSurMurs();
         RebondirSurRaquette();
+        CasserBriques();
     }
 
     /// <summary>Une image de jeu dans les états Perdu et Gagne.</summary>
