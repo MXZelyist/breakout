@@ -16,13 +16,13 @@ static partial class Program
     {
         if (Raylib.IsKeyDown(KeyboardKey.Left))
         {
-            positionRaquette.X += VITESSE_RAQUETTE * dt;
+            positionRaquette.X -= VITESSE_RAQUETTE * dt;
             if (positionRaquette.X < 0)
                 positionRaquette.X = 0;
         }
         else if (Raylib.IsKeyDown(KeyboardKey.Right))
         {
-            positionRaquette.X -= VITESSE_RAQUETTE * dt;
+            positionRaquette.X += VITESSE_RAQUETTE * dt;
             if (positionRaquette.X > LARGEUR - LARGEUR_RAQUETTE)
                 positionRaquette.X = LARGEUR - LARGEUR_RAQUETTE;
         }

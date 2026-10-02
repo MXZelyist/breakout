@@ -64,6 +64,10 @@ static partial class Program
     /// <summary>Une image de jeu dans l'état Jeu.</summary>
     static void MettreAJourJeu(float dt)
     {
+        positionBalle = new Vector2(positionBalle.X, positionBalle.Y);
+        DeplacerRaquette(dt);
+        DeplacerBalle(dt);
+        RebondirSurMurs();
     }
 
     /// <summary>Une image de jeu dans les états Perdu et Gagne.</summary>
