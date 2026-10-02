@@ -29,7 +29,7 @@ static partial class Program
     const float VITESSE_BALLE = 350;       // pixels par seconde
 
     // Briques
-    const int LIGNES_BRIQUES = 1;
+    const int LIGNES_BRIQUES = 5;
     const int COLONNES_BRIQUES = 10;
     const float ESPACE_BRIQUES = 6;        // espace entre deux briques, et entre une brique et le bord
     const float HAUTEUR_BRIQUE = 22;
