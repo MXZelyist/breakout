@@ -31,5 +31,9 @@ static partial class Program
     /// <summary>Fait rebondir la balle si elle touche la raquette.</summary>
     static void RebondirSurRaquette()
     {
+        if(Raylib.CheckCollisionCircleRec(positionBalle, RAYON_BALLE, RectangleRaquette()))
+        {
+            vitesseBalle.Y = -vitesseBalle.Y;
+        }
     }
 }
